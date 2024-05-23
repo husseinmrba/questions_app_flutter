@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:questions_app/cubit/questions_cubit/questions_cubit.dart';
 import 'package:questions_app/routes.dart';
 import 'package:questions_app/views/questions_view.dart';
 
@@ -11,10 +13,13 @@ class QuestionsApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      routes: myRoutes,
-      initialRoute: QuestionsView.id,
+    return BlocProvider(
+      create: (context) => QuestionsCubit(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        routes: myRoutes,
+        initialRoute: QuestionsView.id,
+      ),
     );
   }
 }
