@@ -18,7 +18,7 @@ class SubTitleQuestion extends StatelessWidget {
             alignment: Alignment.topCenter,
             child: Text(
               tag,
-              style: TextStyle(
+              style:const TextStyle(
                 color: Colors.white,
                 fontSize: 9,
               ),

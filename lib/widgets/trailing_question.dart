@@ -10,7 +10,7 @@ class TrailingQuestion extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CircleAvatar(
+        const CircleAvatar(
           radius: 8,
           backgroundColor: Colors.grey,
           foregroundColor: Colors.white,
@@ -25,13 +25,13 @@ class TrailingQuestion extends StatelessWidget {
           ),
           child: Text(
             "$score",
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.bold,
             ),
           ),
         ),
-        CircleAvatar(
+        const CircleAvatar(
           radius: 8,
           backgroundColor: Colors.grey,
           foregroundColor: Colors.white,

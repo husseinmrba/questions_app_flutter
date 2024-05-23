@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-final baseUrl = 'https://api.stackexchange.com/2.3';
+const baseUrl = 'https://api.stackexchange.com/2.3';
 const List<Color> kMyGradientColors = [
   Color(0xffd399c1),
   Color(0xff9b5acf),
