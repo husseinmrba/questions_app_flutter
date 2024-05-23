@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 class SubTitleQuestion extends StatelessWidget {
   const SubTitleQuestion({
     super.key,
+    required this.tag,
   });
-
+  final String tag;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -13,10 +14,10 @@ class SubTitleQuestion extends StatelessWidget {
         height: 15,
         child: Chip(
           padding: EdgeInsets.zero,
-          label:const  Align(
+          label: Align(
             alignment: Alignment.topCenter,
             child: Text(
-              'Flutter1',
+              tag,
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 9,

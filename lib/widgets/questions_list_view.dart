@@ -17,7 +17,9 @@ class QuestionsListView extends StatelessWidget {
       },
       itemCount: questionsList.length,
       itemBuilder: (context, index) {
-        return const CustomCard();
+        return CustomCard(
+          question: questionsList[index],
+        );
       },
     );
   }

@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 class TrailingQuestion extends StatelessWidget {
   const TrailingQuestion({
     super.key,
+    required this.score,
   });
-
+  final int score;
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
         CircleAvatar(
           radius: 8,
@@ -18,11 +19,16 @@ class TrailingQuestion extends StatelessWidget {
             size: 16,
           ),
         ),
-        Text(
-          '2',
-          style: TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.bold,
+        Padding(
+          padding: const EdgeInsets.symmetric(
+            vertical: 3,
+          ),
+          child: Text(
+            "$score",
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
         CircleAvatar(

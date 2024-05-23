@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:questions_app/models/question_model.dart';
 import 'package:questions_app/widgets/question_item.dart';
 
 class CustomCard extends StatelessWidget {
-  const CustomCard({super.key});
-
+  const CustomCard({super.key, required this.question});
+  final QuestionModel question;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,11 +16,13 @@ class CustomCard extends StatelessWidget {
           offset: const Offset(2, 2),
         ),
       ]),
-      child: const Card(
+      child: Card(
         surfaceTintColor: Colors.white,
         elevation: 5,
         color: Colors.white,
-        child: QuestionItem(),
+        child: QuestionItem(
+          question: question,
+        ),
       ),
     );
   }

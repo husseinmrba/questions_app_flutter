@@ -8,7 +8,7 @@ class QuestionsService {
     try {
       final response = await Api().get(
         url: baseUrl +
-            '/questions?page=$page&pagesize=$FETCH_LIMIT&order=desc&sort=activity&tagged=flutter&site=stackoverflow&filter=!4(sMpkA4mjX9HHLwA',
+            '/questions?page=$page&pagesize=$FETCH_LIMIT&order=desc&sort=activity&tagged=flutter;dart;bloc&site=stackoverflow&filter=!4(sMpkA4mjX9HHLwA',
       );
       return response['items'] as List<dynamic>;
     } catch (e) {
