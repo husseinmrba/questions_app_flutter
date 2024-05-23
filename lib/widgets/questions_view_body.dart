@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:questions_app/cubit/questions_cubit/questions_cubit.dart';
 import 'package:questions_app/models/question_model.dart';
 import 'package:questions_app/widgets/questions_list_view.dart';
@@ -15,11 +16,12 @@ class QuestionsViewBody extends StatelessWidget {
         builder: (context, state) {
       if (state is QuestionsLoading && state.isFirstFetch) {
         return const Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Center(
-            child: CircularProgressIndicator(),
-          ),
-        );
+            padding:  EdgeInsets.all(8.0),
+            child: SpinKitThreeBounce(
+              color: Color(0xff611cdf),
+              size: 40,
+            ),
+          );
       }
 
       List<QuestionModel> questions = [];

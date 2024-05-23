@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:questions_app/cubit/questions_cubit/questions_cubit.dart';
 import 'package:questions_app/models/question_model.dart';
 import 'package:questions_app/widgets/custom_card.dart';
@@ -45,8 +46,12 @@ class _QuestionsListViewState extends State<QuestionsListView> {
             scrollController.jumpTo(scrollController.position.maxScrollExtent);
           });
 
-          return const Center(
-            child: CircularProgressIndicator(),
+          return const Padding(
+            padding:  EdgeInsets.all(8.0),
+            child: SpinKitThreeBounce(
+              color: Color(0xff611cdf),
+              size: 40,
+            ),
           );
         }
       },
