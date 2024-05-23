@@ -7,19 +7,34 @@ class TrailingQuestion extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Chip(
-      padding: EdgeInsets.zero,
-      label: const Text(
-        '2 Score',
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 12,
+    return const Column(
+      children: [
+        CircleAvatar(
+          radius: 8,
+          backgroundColor: Colors.grey,
+          foregroundColor: Colors.white,
+          child: Icon(
+            Icons.arrow_upward,
+            size: 16,
+          ),
         ),
-      ),
-      backgroundColor: Colors.blueGrey,
-      shape: BeveledRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
+        Text(
+          '2',
+          style: TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        CircleAvatar(
+          radius: 8,
+          backgroundColor: Colors.grey,
+          foregroundColor: Colors.white,
+          child: Icon(
+            Icons.arrow_downward,
+            size: 16,
+          ),
+        ),
+      ],
     );
   }
 }

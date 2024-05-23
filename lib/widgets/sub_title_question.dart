@@ -8,12 +8,12 @@ class SubTitleQuestion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 8.0),
+      padding: const EdgeInsets.only(right: 3.0),
       child: SizedBox(
         height: 15,
         child: Chip(
           padding: EdgeInsets.zero,
-          label: Align(
+          label:const  Align(
             alignment: Alignment.topCenter,
             child: Text(
               'Flutter1',

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:questions_app/widgets/question_item.dart';
+import 'package:questions_app/widgets/custom_card.dart';
 
 class QuestionsListView extends StatelessWidget {
   const QuestionsListView({
@@ -10,11 +10,11 @@ class QuestionsListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
       separatorBuilder: (context, index) {
-        return const SizedBox(height: 20);
+        return const SizedBox(height: 1);
       },
       itemCount: 10,
       itemBuilder: (context, index) {
-        return const QuestionItem();
+        return const CustomCard();
       },
     );
   }
