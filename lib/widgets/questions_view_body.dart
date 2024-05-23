@@ -13,7 +13,6 @@ class QuestionsViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<QuestionsCubit, QuestionsState>(
         builder: (context, state) {
-
       if (state is QuestionsLoading && state.isFirstFetch) {
         return const Padding(
           padding: EdgeInsets.all(8.0),
@@ -24,14 +23,17 @@ class QuestionsViewBody extends StatelessWidget {
       }
 
       List<QuestionModel> questions = [];
+      bool isLoading = false;
       if (state is QuestionsLoading) {
         questions = state.oldQuestionsList;
+        isLoading = true;
       } else if (state is QuestionsLoaded) {
         questions = state.questionsList;
       }
       return Expanded(
         child: QuestionsListView(
           questionsList: questions,
+          isLoading: isLoading,
         ),
       );
     });
