@@ -9,8 +9,8 @@ class QuestionOwnerModel {
 
   factory QuestionOwnerModel.fromJson(Map jsonData) {
     return QuestionOwnerModel(
-      fullName: jsonData['owner']['display_name'],
-      profileImage: jsonData['owner']['profile_image'],
+      fullName: jsonData['display_name'],
+      profileImage: jsonData['profile_image'],
     );
   }
 }

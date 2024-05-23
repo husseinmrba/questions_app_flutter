@@ -6,17 +6,17 @@ sealed class QuestionsState {}
 final class QuestionsInitial extends QuestionsState {}
 
 final class QuestionsLoading extends QuestionsState {
-  final List<QuestionModel> oldQuestionList;
+  final List<QuestionModel> oldQuestionsList;
   final bool isFirstFetch;
 
   QuestionsLoading(
-    this.oldQuestionList, {
+    this.oldQuestionsList, {
     this.isFirstFetch = false,
   });
 }
 
 final class QuestionsLoaded extends QuestionsState {
-  final List<QuestionModel> questionList;
+  final List<QuestionModel> questionsList;
 
-  QuestionsLoaded({required this.questionList});
+  QuestionsLoaded({required this.questionsList});
 }

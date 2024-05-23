@@ -5,7 +5,7 @@ class QuestionModel {
   final String title;
   final int score;
   final List<String> tags;
-  final DateTime creationDate;
+  final int creationDate;
   final QuestionOwnerModel questionOwner;
   final String body;
 
@@ -23,7 +23,8 @@ class QuestionModel {
       : id = jsonData['question_id'],
         title = jsonData['title'],
         score = jsonData['score'],
-        tags = jsonData['tags'],
+        tags =
+            (jsonData['tags'] as List).map((item) => item as String).toList(),
         creationDate = jsonData['creation_date'],
         questionOwner = QuestionOwnerModel.fromJson(jsonData['owner']),
         body = jsonData['body'];
