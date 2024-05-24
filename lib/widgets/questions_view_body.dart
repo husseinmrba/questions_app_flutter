@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:questions_app/cubit/questions_cubit/questions_cubit.dart';
+import 'package:questions_app/cubits/questions_cubit/questions_cubit.dart';
 import 'package:questions_app/models/question_model.dart';
 import 'package:questions_app/widgets/questions_list_view.dart';
 
