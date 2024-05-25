@@ -29,7 +29,7 @@ class QuestionsApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => InternetCubit()),
+        BlocProvider(create: (context) => InternetCubit()..checkConnectivity()),
         BlocProvider(create: (context) => DatabaseCubit()..initDatabase()),
         BlocProvider(
           create: (context) => QuestionsCubit(

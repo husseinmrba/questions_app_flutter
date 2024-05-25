@@ -7,7 +7,7 @@ class QuestionModel implements Mapper<QuestionModel, QuestionModelDb> {
   final String title;
   final int score;
   final List<String> tags;
-  final int creationDate;
+  final int? creationDate;
   final QuestionOwnerModel questionOwner;
   final String body;
 
@@ -16,7 +16,7 @@ class QuestionModel implements Mapper<QuestionModel, QuestionModelDb> {
     required this.title,
     required this.score,
     required this.tags,
-    required this.creationDate,
+    this.creationDate,
     required this.questionOwner,
     required this.body,
   });

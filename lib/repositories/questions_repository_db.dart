@@ -14,4 +14,20 @@ class QuestionsRepositoryDb {
       questionModelDb.toMap(),
     );
   }
+
+  // Get All Questions
+  Future<List<QuestionModelDb>> fetchAllQuestions(int page) async {
+    final result = await _databaseCubit.database?.query(
+      questionsTableName,
+      orderBy: '${QuestionsFieldsDb.idField} DESC',
+      limit: 15,
+      offset: page,
+    );
+
+    if (result != null && result.isNotEmpty) {
+      return result.map((qDb) => QuestionModelDb.fromMap(qDb)).toList();
+    } else {
+      return <QuestionModelDb>[];
+    }
+  }
 }

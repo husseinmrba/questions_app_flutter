@@ -23,7 +23,7 @@ class QuestionsCubit extends Cubit<QuestionsState> {
   final QuestionsRepositoryDb questionsRepositoryDb;
   final InternetCubit _internetCubit;
   late final StreamSubscription _internetCubitSubscription;
-  bool _isConnected = true;
+  bool _isConnected = false;
 
   void listeningStatesInternet() {
     _internetCubitSubscription = _internetCubit.stream.listen((state) {
@@ -74,13 +74,19 @@ class QuestionsCubit extends Cubit<QuestionsState> {
       });
     } else {
       log('Hussein Issa not connected');
-      final questions = (state as QuestionsLoading).oldQuestionsList;
+      questionsRepositoryDb.fetchAllQuestions(page).then((questionsDb) {
+        page++;
+        // mapping from QuestionModelDb object to QuestionModel to show data;
+        var newQuestionsDb = questionsDb.map((q) => q.mapper(q)).toList();
 
-      emit(
-        QuestionsLoaded(
-          questionsList: questions,
-        ),
-      );
+        final questions = (state as QuestionsLoading).oldQuestionsList;
+        questions.addAll(newQuestionsDb);
+        emit(
+          QuestionsLoaded(
+            questionsList: questions,
+          ),
+        );
+      });
     }
   }
 
