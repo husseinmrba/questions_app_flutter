@@ -23,9 +23,7 @@ class _QuestionsViewBodyState extends State<QuestionsViewBody> {
   void initState() {
     _internetCubit = BlocProvider.of<InternetCubit>(context);
     _questionsCubit = BlocProvider.of<QuestionsCubit>(context);
-    // _internetCubit.checkConnectivity();
     _internetCubit.trackConnectivityChange();
-    // _questionsCubit.loadQuestions();
     super.initState();
   }
 

@@ -12,9 +12,7 @@ import 'package:questions_app/views/questions_view.dart';
 void main() {
   runApp(
     QuestionsApp(
-      questionsRepository: QuestionsRepository(
-        QuestionsService(),
-      ),
+      questionsRepository: QuestionsRepository(QuestionsService()),
     ),
   );
 }
@@ -47,5 +45,8 @@ class QuestionsApp extends StatelessWidget {
         initialRoute: QuestionsView.id,
       ),
     );
+
+
+    
   }
 }

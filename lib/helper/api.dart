@@ -1,14 +1,10 @@
 import 'dart:convert';
-
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 
 class Api {
   Future<dynamic> get({
     required String url,
-    @required String? token,
+    String? token,
   }) async {
     
     Map<String, String> headers = {};
