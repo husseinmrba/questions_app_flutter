@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:questions_app/cubits/internet_cubit/internet_cubit.dart';
 import 'package:questions_app/cubits/questions_cubit/questions_cubit.dart';
 import 'package:questions_app/repositories/questions_repository.dart';
 import 'package:questions_app/routes.dart';
@@ -21,8 +22,16 @@ class QuestionsApp extends StatelessWidget {
   final QuestionsRepository repository;
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => QuestionsCubit(repository),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => InternetCubit()),
+        BlocProvider(
+          create: (context) => QuestionsCubit(
+            repository,
+            BlocProvider.of<InternetCubit>(context),
+          ),
+        ),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         routes: myRoutes,

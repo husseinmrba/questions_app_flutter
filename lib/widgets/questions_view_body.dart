@@ -16,55 +16,53 @@ class QuestionsViewBody extends StatefulWidget {
 }
 
 class _QuestionsViewBodyState extends State<QuestionsViewBody> {
+  late InternetCubit _internetCubit;
+  late QuestionsCubit _questionsCubit;
   @override
   void initState() {
-    BlocProvider.of<InternetCubit>(context).checkConnectivity();
-    BlocProvider.of<InternetCubit>(context).trackConnectivityChange();
+    _internetCubit = BlocProvider.of<InternetCubit>(context);
+    _questionsCubit = BlocProvider.of<QuestionsCubit>(context);
+    _internetCubit.checkConnectivity();
+    _internetCubit.trackConnectivityChange();
+    _questionsCubit.loadQuestions();
     super.initState();
   }
 
   @override
   void dispose() {
-    BlocProvider.of<InternetCubit>(context).dispose();
+    _internetCubit.dispose();
+    _questionsCubit.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<InternetCubit, InternetState>(
-      builder: (context, internetState) {
-        if (internetState is InternetConnected) {
-          return BlocBuilder<QuestionsCubit, QuestionsState>(
-              builder: (context, state) {
-            if (state is QuestionsLoading && state.isFirstFetch) {
-              return const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: SpinKitThreeBounce(
-                  color: Color(0xff611cdf),
-                  size: 40,
-                ),
-              );
-            }
+    return BlocBuilder<QuestionsCubit, QuestionsState>(
+        builder: (context, state) {
+      if (state is QuestionsLoading && state.isFirstFetch) {
+        return const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: SpinKitThreeBounce(
+            color: Color(0xff611cdf),
+            size: 40,
+          ),
+        );
+      }
 
-            List<QuestionModel> questions = [];
-            bool isLoading = false;
-            if (state is QuestionsLoading) {
-              questions = state.oldQuestionsList;
-              isLoading = true;
-            } else if (state is QuestionsLoaded) {
-              questions = state.questionsList;
-            }
-            return Expanded(
-              child: QuestionsListView(
-                questionsList: questions,
-                isLoading: isLoading,
-              ),
-            );
-          });
-        } else {
-          return const Center(child: Text('Not internet'));
-        }
-      },
-    );
+      List<QuestionModel> questions = [];
+      bool isLoading = false;
+      if (state is QuestionsLoading) {
+        questions = state.oldQuestionsList;
+        isLoading = true;
+      } else if (state is QuestionsLoaded) {
+        questions = state.questionsList;
+      }
+      return Expanded(
+        child: QuestionsListView(
+          questionsList: questions,
+          isLoading: isLoading,
+        ),
+      );
+    });
   }
 }
