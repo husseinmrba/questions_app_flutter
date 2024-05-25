@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:questions_app/cubits/internet_cubit/internet_cubit.dart';
 import 'package:questions_app/models/question_model.dart';
 import 'package:questions_app/repositories/questions_repository.dart';
+import 'package:questions_app/repositories/questions_repository_db.dart';
 
 part 'questions_state.dart';
 
@@ -12,12 +13,14 @@ class QuestionsCubit extends Cubit<QuestionsState> {
   QuestionsCubit(
     this.questionsRepository,
     this._internetCubit,
+    this.questionsRepositoryDb,
   ) : super(QuestionsInitial()) {
     listeningStatesInternet();
   }
 
   int page = 1;
   final QuestionsRepository questionsRepository;
+  final QuestionsRepositoryDb questionsRepositoryDb;
   final InternetCubit _internetCubit;
   late final StreamSubscription _internetCubitSubscription;
   bool _isConnected = true;
@@ -58,6 +61,11 @@ class QuestionsCubit extends Cubit<QuestionsState> {
 
         final questions = (state as QuestionsLoading).oldQuestionsList;
         questions.addAll(newQuestions);
+        // mapping from QuestionModel object to QuestionModelDb to store data;
+        var questionsToStore = newQuestions.map((q) => q.mapper(q)).toList();
+        for (var element in questionsToStore) {
+          questionsRepositoryDb.postQuentionDb(element);
+        }
         emit(
           QuestionsLoaded(
             questionsList: questions,

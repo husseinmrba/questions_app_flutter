@@ -21,23 +21,24 @@ class DatabaseCubit extends Cubit<DatabaseState> {
       version: _databaseVersion,
       onCreate: _createDB,
     );
+
+    emit(DatabaseLoaded());
   }
 
-   //! Create Database method
+  //! Create Database method
   Future _createDB(
     Database db,
     int version,
   ) async {
-    
     await db.execute('''
-      CREATE TABLE IF NOT EXISTS $questionsTableName (
+      CREATE TABLE IF NOT EXISTS $questionsTableName(
         ${QuestionsFieldsDb.idField} ${QuestionsFieldsDb.idFieldType},
         ${QuestionsFieldsDb.idQuestionField} ${QuestionsFieldsDb.idQuestionFieldType},
         ${QuestionsFieldsDb.titleField} ${QuestionsFieldsDb.titleFieldType},
         ${QuestionsFieldsDb.scoreField} ${QuestionsFieldsDb.scoreFieldType},
         ${QuestionsFieldsDb.tagsField} ${QuestionsFieldsDb.tagsFieldType},
         ${QuestionsFieldsDb.questionOwnerField} ${QuestionsFieldsDb.questionOwnerFieldType},
-        ${QuestionsFieldsDb.bodyField} ${QuestionsFieldsDb.bodyFieldType},
+        ${QuestionsFieldsDb.bodyField} ${QuestionsFieldsDb.bodyFieldType}
       )
       ''');
   }

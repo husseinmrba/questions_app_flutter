@@ -1,6 +1,8 @@
+import 'package:questions_app/helper/mapping.dart';
+import 'package:questions_app/models/question_model_db.dart';
 import 'package:questions_app/models/question_owner_model.dart';
 
-class QuestionModel {
+class QuestionModel implements Mapper<QuestionModel, QuestionModelDb> {
   final int id;
   final String title;
   final int score;
@@ -28,4 +30,16 @@ class QuestionModel {
         creationDate = jsonData['creation_date'],
         questionOwner = QuestionOwnerModel.fromJson(jsonData['owner']),
         body = jsonData['body'];
+
+  @override
+  QuestionModelDb mapper(QuestionModel object) {
+    return QuestionModelDb(
+      idQuestion: object.id,
+      title: object.title,
+      score: object.score,
+      tags: object.tags.join(','),
+      questionOwner: object.questionOwner.fullName,
+      body: object.body,
+    );
+  }
 }

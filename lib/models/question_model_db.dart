@@ -1,3 +1,6 @@
+import 'package:questions_app/helper/mapping.dart';
+import 'package:questions_app/models/question_model.dart';
+
 const String questionsTableName = 'Questions';
 
 class QuestionsFieldsDb {
@@ -11,7 +14,7 @@ class QuestionsFieldsDb {
   static const bodyField = 'body';
 
   // Columns types for questions table
-  static const idFieldType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
+  static const idFieldType = 'INTEGER PRIMARY KEY';
   static const idQuestionFieldType = 'INTEGER NOT NULL';
   static const titleFieldType = 'TEXT NOT NULL';
   static const scoreFieldType = 'INTEGER NOT NULL';
@@ -20,7 +23,7 @@ class QuestionsFieldsDb {
   static const bodyFieldType = 'TEXT NOT NULL';
 }
 
-class QuestionModelDb {
+class QuestionModelDb implements Mapper<QuestionModel, QuestionModelDb> {
   final int? id;
   final int idQuestion;
   final String title;
@@ -62,6 +65,18 @@ class QuestionModelDb {
       tags: map[QuestionsFieldsDb.tagsField] as String,
       questionOwner: map[QuestionsFieldsDb.questionOwnerField] as String,
       body: map[QuestionsFieldsDb.bodyField] as String,
+    );
+  }
+
+  @override
+  QuestionModelDb mapper(QuestionModel object) {
+    return QuestionModelDb(
+      idQuestion: object.id,
+      title: object.title,
+      score: object.score,
+      tags: object.tags.join(','),
+      questionOwner: object.questionOwner.fullName,
+      body: object.body,
     );
   }
 }
