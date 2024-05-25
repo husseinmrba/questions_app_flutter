@@ -1,7 +1,7 @@
-const String questionsTable = 'Questions';
+const String questionsTableName = 'Questions';
 
 class QuestionsFieldsDb {
-  // Column names for questions table
+  // Columns names for questions table
   static const idField = 'id';
   static const idQuestionField = 'idQuestion';
   static const titleField = 'title';
@@ -9,6 +9,15 @@ class QuestionsFieldsDb {
   static const tagsField = 'tags';
   static const questionOwnerField = 'questionOwner';
   static const bodyField = 'body';
+
+  // Columns types for questions table
+  static const idFieldType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
+  static const idQuestionFieldType = 'INTEGER NOT NULL';
+  static const titleFieldType = 'TEXT NOT NULL';
+  static const scoreFieldType = 'INTEGER NOT NULL';
+  static const tagsFieldType = 'TEXT NOT NULL';
+  static const questionOwnerFieldType = 'TEXT NOT NULL';
+  static const bodyFieldType = 'TEXT NOT NULL';
 }
 
 class QuestionModelDb {
@@ -44,7 +53,9 @@ class QuestionModelDb {
 
   factory QuestionModelDb.fromMap(Map<String, dynamic> map) {
     return QuestionModelDb(
-      id: map[QuestionsFieldsDb.idField] != null ? map[QuestionsFieldsDb.idField] as int : null,
+      id: map[QuestionsFieldsDb.idField] != null
+          ? map[QuestionsFieldsDb.idField] as int
+          : null,
       idQuestion: map[QuestionsFieldsDb.idQuestionField] as int,
       title: map[QuestionsFieldsDb.titleField] as String,
       score: map[QuestionsFieldsDb.scoreField] as int,
