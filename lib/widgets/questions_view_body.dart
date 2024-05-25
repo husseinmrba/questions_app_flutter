@@ -32,8 +32,8 @@ class _QuestionsViewBodyState extends State<QuestionsViewBody> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<InternetCubit, InternetState>(
-      builder: (context, state1) {
-        if (state1 is InternetConnected) {
+      builder: (context, internetState) {
+        if (internetState is InternetConnected) {
           return BlocBuilder<QuestionsCubit, QuestionsState>(
               builder: (context, state) {
             if (state is QuestionsLoading && state.isFirstFetch) {
@@ -62,7 +62,7 @@ class _QuestionsViewBodyState extends State<QuestionsViewBody> {
             );
           });
         } else {
-          return Center(child: Text('Not internet'));
+          return const Center(child: Text('Not internet'));
         }
       },
     );
