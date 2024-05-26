@@ -21,6 +21,12 @@ class _QuestionDetailsViewState extends State<QuestionDetailsView> {
     super.initState();
   }
 
+  late QuestionModel question;
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     question = ModalRoute.of(context)!.settings.arguments as QuestionModel;
@@ -61,3 +67,4 @@ class _QuestionDetailsViewState extends State<QuestionDetailsView> {
     );
   }
 }
+
