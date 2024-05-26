@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:questions_app/constants.dart';
 import 'package:questions_app/cubits/internet_cubit/internet_cubit.dart';
 import 'package:questions_app/models/question_model.dart';
 
@@ -21,14 +22,14 @@ class LeadingQuestion extends StatelessWidget {
             boxShadow: [
               BoxShadow(
                 blurRadius: 3,
-                color: Color(0xff611cdf),
+                color: kPrimaryColor,
                 spreadRadius: 0.1,
               )
             ],
           ),
           child: CircleAvatar(
             radius: 20,
-            backgroundColor: const Color(0xff611cdf),
+            backgroundColor: kPrimaryColor,
             child: BlocBuilder<InternetCubit, InternetState>(
               builder: (context, state) {
                 if (state is InternetConnected) {

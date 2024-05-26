@@ -2,11 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:questions_app/cubits/questions_cubit/questions_cubit.dart';
 import 'package:questions_app/models/question_model.dart';
 import 'package:questions_app/views/question_details_view.dart';
 import 'package:questions_app/widgets/custom_card.dart';
+import 'package:questions_app/widgets/custom_progress_indicator.dart';
 
 class QuestionsListView extends StatefulWidget {
   const QuestionsListView({
@@ -56,13 +56,7 @@ class _QuestionsListViewState extends State<QuestionsListView> {
             scrollController.jumpTo(scrollController.position.maxScrollExtent);
           });
 
-          return const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: SpinKitThreeBounce(
-              color: Color(0xff611cdf),
-              size: 40,
-            ),
-          );
+          return const CustomProgressIndicator();
         }
       },
     );

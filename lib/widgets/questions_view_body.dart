@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:questions_app/cubits/database_cubit/database_cubit.dart';
 import 'package:questions_app/cubits/internet_cubit/internet_cubit.dart';
 import 'package:questions_app/cubits/questions_cubit/questions_cubit.dart';
 import 'package:questions_app/models/question_model.dart';
+import 'package:questions_app/widgets/custom_progress_indicator.dart';
 import 'package:questions_app/widgets/questions_list_view.dart';
 
 class QuestionsViewBody extends StatefulWidget {
@@ -45,13 +45,7 @@ class _QuestionsViewBodyState extends State<QuestionsViewBody> {
       child: BlocBuilder<QuestionsCubit, QuestionsState>(
           builder: (context, state) {
         if (state is QuestionsLoading && state.isFirstFetch) {
-          return const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: SpinKitThreeBounce(
-              color: Color(0xff611cdf),
-              size: 40,
-            ),
-          );
+          return const CustomProgressIndicator();
         }
 
         List<QuestionModel> questions = [];
@@ -72,3 +66,5 @@ class _QuestionsViewBodyState extends State<QuestionsViewBody> {
     );
   }
 }
+
+
