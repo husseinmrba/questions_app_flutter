@@ -42,7 +42,10 @@ class _QuestionsListViewState extends State<QuestionsListView> {
           var question = widget.questionsList[index];
           return GestureDetector(
             onTap: () {
-              Navigator.of(context).pushNamed(QuestionDetailsView.id);
+              Navigator.of(context).pushNamed(
+                QuestionDetailsView.id,
+                arguments: question,
+              );
             },
             child: CustomCard(
               question: question,
