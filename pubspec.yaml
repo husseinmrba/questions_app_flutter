@@ -10,6 +10,9 @@ dependencies:
   connectivity_plus: ^6.0.3
   flutter:
     sdk: flutter
+  show_toast_when_fetch_data_api:
+    git:
+      url: https://github.com/husseinmrba/flutter_plugin_toast.git
   flutter_bloc: ^8.1.5
   flutter_spinkit: ^5.2.1
   http: ^1.2.1

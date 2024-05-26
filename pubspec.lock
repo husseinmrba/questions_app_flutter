@@ -256,6 +256,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.2"
+  show_toast_when_fetch_data_api:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "72a1f1b5cd923e5ae8fa5d3a2b58da54bc5c1628"
+      url: "https://github.com/husseinmrba/flutter_plugin_toast.git"
+    source: git
+    version: "0.0.1"
   sky_engine:
     dependency: transitive
     description: flutter
