@@ -55,7 +55,7 @@ class QuestionsCubit extends Cubit<QuestionsState> {
       ),
     );
     if (_isConnected) {
-      log('Hussein Issa connected');
+      log('connected');
       questionsRepository.fetchQuestions(page).then((newQuestions) {
         page++;
 
@@ -73,7 +73,7 @@ class QuestionsCubit extends Cubit<QuestionsState> {
         );
       });
     } else {
-      log('Hussein Issa not connected');
+      log('not connected');
       questionsRepositoryDb.fetchAllQuestions(page).then((questionsDb) {
         page++;
         // mapping from QuestionModelDb object to QuestionModel to show data;
