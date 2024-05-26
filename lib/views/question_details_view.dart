@@ -21,12 +21,6 @@ class _QuestionDetailsViewState extends State<QuestionDetailsView> {
     super.initState();
   }
 
-  late QuestionModel question;
-  @override
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     question = ModalRoute.of(context)!.settings.arguments as QuestionModel;
@@ -39,7 +33,7 @@ class _QuestionDetailsViewState extends State<QuestionDetailsView> {
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: SingleChildScrollView(
                 child: Column(
                   children: [
@@ -47,10 +41,14 @@ class _QuestionDetailsViewState extends State<QuestionDetailsView> {
                       title: 'Question Details',
                     ),
                     Divider(),
-                    HtmlWidget(
-                      question.body,
-                      textStyle: TextStyle(
-                        fontSize: 12,
+                    Container(
+                      color: Color(0xff611cdf).withOpacity(0.05),
+                      padding: EdgeInsets.all(12),
+                      child: HtmlWidget(
+                        question.body,
+                        textStyle: TextStyle(
+                          fontSize: 12,
+                        ),
                       ),
                     ),
                     Divider(),
@@ -67,4 +65,3 @@ class _QuestionDetailsViewState extends State<QuestionDetailsView> {
     );
   }
 }
-
