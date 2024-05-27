@@ -19,6 +19,7 @@ class QuestionsViewBody extends StatefulWidget {
 class _QuestionsViewBodyState extends State<QuestionsViewBody> {
   late InternetCubit _internetCubit;
   late QuestionsCubit _questionsCubit;
+  
   @override
   void initState() {
     _internetCubit = BlocProvider.of<InternetCubit>(context);

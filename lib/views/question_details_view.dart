@@ -4,7 +4,6 @@ import 'package:questions_app/cubits/question_answers_cubit/question_answers_cub
 import 'package:questions_app/models/question_model.dart';
 import 'package:questions_app/widgets/custom_app_bar.dart';
 import 'package:questions_app/widgets/custom_card.dart';
-import 'package:questions_app/widgets/custom_progress_indicator.dart';
 import 'package:questions_app/widgets/question_details_view_body.dart';
 import 'package:questions_app/widgets/show_html.dart';
 import 'package:questions_app/widgets/title_view.dart';

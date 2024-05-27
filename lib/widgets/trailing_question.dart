@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:questions_app/widgets/custom_circle_avatar.dart';
 
 class TrailingQuestion extends StatelessWidget {
   const TrailingQuestion({
@@ -10,14 +11,8 @@ class TrailingQuestion extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const CircleAvatar(
-          radius: 8,
-          backgroundColor: Colors.grey,
-          foregroundColor: Colors.white,
-          child: Icon(
-            Icons.arrow_upward,
-            size: 16,
-          ),
+        const CustomCircleAvatar(
+          icon: Icons.arrow_upward,
         ),
         Padding(
           padding: const EdgeInsets.symmetric(
@@ -31,14 +26,8 @@ class TrailingQuestion extends StatelessWidget {
             ),
           ),
         ),
-        const CircleAvatar(
-          radius: 8,
-          backgroundColor: Colors.grey,
-          foregroundColor: Colors.white,
-          child: Icon(
-            Icons.arrow_downward,
-            size: 16,
-          ),
+        const CustomCircleAvatar(
+          icon: Icons.arrow_downward,
         ),
       ],
     );

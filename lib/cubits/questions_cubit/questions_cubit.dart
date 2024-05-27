@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:questions_app/cubits/internet_cubit/internet_cubit.dart';
@@ -25,18 +24,6 @@ class QuestionsCubit extends Cubit<QuestionsState> {
   late final StreamSubscription _internetCubitSubscription;
   bool _isConnected = false;
 
-  void listeningStatesInternet() {
-    _internetCubitSubscription = _internetCubit.stream.listen((state) {
-      if (state is InternetConnected) {
-        _isConnected = true;
-        log('isConnected = true');
-      } else {
-        _isConnected = false;
-        log('isConnected = false');
-      }
-    });
-  }
-
   void loadQuestions() {
     if (state is QuestionsLoading) {
       return;
@@ -55,37 +42,55 @@ class QuestionsCubit extends Cubit<QuestionsState> {
       ),
     );
     if (_isConnected) {
-      questionsRepository.fetchQuestions(page).then((newQuestions) {
-        page++;
-
-        final questions = (state as QuestionsLoading).oldQuestionsList;
-        questions.addAll(newQuestions);
-        // mapping from QuestionModel object to QuestionModelDb to store data;
-        var questionsToStore = newQuestions.map((q) => q.mapper(q)).toList();
-        for (var element in questionsToStore) {
-          questionsRepositoryDb.postQuentionDb(element);
-        }
-        emit(
-          QuestionsLoaded(
-            questionsList: questions,
-          ),
-        );
-      });
+      fetchAndStoreQuestionsDataApi();
     } else {
-      questionsRepositoryDb.fetchAllQuestions(page).then((questionsDb) {
-        page++;
-        // mapping from QuestionModelDb object to QuestionModel to show data;
-        var newQuestionsDb = questionsDb.map((q) => q.mapper(q)).toList();
-
-        final questions = (state as QuestionsLoading).oldQuestionsList;
-        questions.addAll(newQuestionsDb);
-        emit(
-          QuestionsLoaded(
-            questionsList: questions,
-          ),
-        );
-      });
+      fetchQuestionsDataLocal();
     }
+  }
+
+  void fetchQuestionsDataLocal() {
+    questionsRepositoryDb.fetchAllQuestions(page).then((questionsDb) {
+      page++;
+      // mapping from QuestionModelDb object to QuestionModel to show data;
+      var newQuestionsDb = questionsDb.map((q) => q.mapper(q)).toList();
+
+      final questions = (state as QuestionsLoading).oldQuestionsList;
+      questions.addAll(newQuestionsDb);
+      emit(
+        QuestionsLoaded(
+          questionsList: questions,
+        ),
+      );
+    });
+  }
+
+  void fetchAndStoreQuestionsDataApi() {
+    questionsRepository.fetchQuestions(page).then((newQuestions) {
+      page++;
+
+      final questions = (state as QuestionsLoading).oldQuestionsList;
+      questions.addAll(newQuestions);
+      // mapping from QuestionModel object to QuestionModelDb to store data;
+      var questionsToStore = newQuestions.map((q) => q.mapper(q)).toList();
+      for (var element in questionsToStore) {
+        questionsRepositoryDb.postQuentionDb(element);
+      }
+      emit(
+        QuestionsLoaded(
+          questionsList: questions,
+        ),
+      );
+    });
+  }
+
+  void listeningStatesInternet() {
+    _internetCubitSubscription = _internetCubit.stream.listen((state) {
+      if (state is InternetConnected) {
+        _isConnected = true;
+      } else {
+        _isConnected = false;
+      }
+    });
   }
 
   Future<void> dispose() {

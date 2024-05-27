@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:questions_app/constants.dart';
 
 class SubTitleQuestion extends StatelessWidget {
   const SubTitleQuestion({
@@ -18,13 +19,13 @@ class SubTitleQuestion extends StatelessWidget {
             alignment: Alignment.topCenter,
             child: Text(
               tag,
-              style:const TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 9,
               ),
             ),
           ),
-          backgroundColor: const Color(0xff9b5acf),
+          backgroundColor: kPrimaryColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),
           ),

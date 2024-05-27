@@ -55,11 +55,16 @@ class _QuestionsListViewState extends State<QuestionsListView> {
           Timer(const Duration(milliseconds: 30), () {
             scrollController.jumpTo(scrollController.position.maxScrollExtent);
           });
-
           return const CustomProgressIndicator();
         }
       },
     );
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
   }
 
   void setupScrollController(context) {

@@ -15,9 +15,12 @@ import 'package:questions_app/views/questions_view.dart';
 void main() {
   runApp(
     QuestionsApp(
-      questionsRepository: QuestionsRepository(QuestionsService()),
-      questionAnswersRepository:
-          QuestionAnswersRepository(QuestionAnswersService()),
+      questionsRepository: QuestionsRepository(
+        QuestionsService(),
+      ),
+      questionAnswersRepository: QuestionAnswersRepository(
+        QuestionAnswersService(),
+      ),
     ),
   );
 }
@@ -36,7 +39,9 @@ class QuestionsApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => InternetCubit()..checkConnectivity()),
         BlocProvider(create: (context) => DatabaseCubit()..initDatabase()),
-        BlocProvider(create: (context) => QuestionAnswersCubit(questionAnswersRepository)),
+        BlocProvider(
+            create: (context) =>
+                QuestionAnswersCubit(questionAnswersRepository)),
         BlocProvider(
           create: (context) => QuestionsCubit(
             questionsRepository,

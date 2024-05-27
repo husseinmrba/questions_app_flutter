@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:questions_app/constants.dart';
-import 'package:questions_app/cubits/internet_cubit/internet_cubit.dart';
 import 'package:questions_app/models/question_model.dart';
+import 'package:questions_app/widgets/show_question_owner_image.dart';
 
 class LeadingQuestion extends StatelessWidget {
   const LeadingQuestion({
@@ -16,40 +14,7 @@ class LeadingQuestion extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          decoration: const BoxDecoration(
-            shape: BoxShape.circle,
-            boxShadow: [
-              BoxShadow(
-                blurRadius: 3,
-                color: kPrimaryColor,
-                spreadRadius: 0.1,
-              )
-            ],
-          ),
-          child: CircleAvatar(
-            radius: 20,
-            backgroundColor: kPrimaryColor,
-            child: BlocBuilder<InternetCubit, InternetState>(
-              builder: (context, state) {
-                if (state is InternetConnected) {
-                  return CircleAvatar(
-                    radius: 19,
-                    backgroundImage: NetworkImage(question
-                            .questionOwner.profileImage ??
-                        'https://www.kindpng.com/picc/m/33-338711_circle-user-icon-blue-hd-png-download.png'),
-                  );
-                } else {
-                  return const CircleAvatar(
-                    radius: 19,
-                    backgroundImage:
-                        AssetImage('assets/images/defualtImage.png'),
-                  );
-                }
-              },
-            ),
-          ),
-        ),
+        ShowQuestionOwnerImage(question: question),
         Padding(
           padding: const EdgeInsets.only(top: 2),
           child: SizedBox(
